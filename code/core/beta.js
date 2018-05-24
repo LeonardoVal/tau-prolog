@@ -1,5 +1,13 @@
-(function() {
-	
+(function (init) { "use strict"; // UMD wrapper.
+	if (typeof define === 'function' && define.amd) {
+		define([], init); // AMD module (e.g. RequireJS)
+	} else if (typeof exports === 'object' && module.exports) {
+		module.exports = init(); // CommonJS module (for NodeJS).
+	} else {
+		this.pl = init(); // Browser (script tag or webworker).
+	}
+}).call(this, function () {
+
 	// PARSER
 
 	var indexOf;
@@ -3888,6 +3896,5 @@
 		
 	};
 
-	window.pl = pl;
-	
-})();
+	return pl;
+});
